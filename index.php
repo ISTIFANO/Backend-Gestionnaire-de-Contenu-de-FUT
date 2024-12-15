@@ -12,7 +12,7 @@
 
    <link href="./src/output.css" rel="stylesheet">
    <link rel="stylesheet" href="./public/css/style.css">
-  <link rel="shortcut icon" href="./src/assets/img/pl-main-logo.png" type="image/x-icon">
+  <link rel="shortcut icon" href="./public/img/pl-main-logo.png" type="image/x-icon">
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
@@ -42,27 +42,27 @@
           <nav aria-label="Global" class="hidden md:block">
             <ul class="flex items-center gap-6 text-sm">
               <li>
-                <a class="text-white transition font-semibold hover:text-white/75" href="#"> About </a>
+                <a class="text-white transition font-semibold hover:text-white/75" href="./views/Dashboard.php"> About </a>
               </li>
 
               <li>
-                <a class="text-white transition font-semibold hover:text-white/75" href="#"> Careers </a>
+                <a class="text-white transition font-semibold hover:text-white/75" href="./views/Dashboard.php"> Careers </a>
               </li>
 
               <li>
-                <a class="text-white transition font-semibold hover:text-white/75" href="#"> History </a>
+                <a class="text-white transition font-semibold hover:text-white/75" href="./views/Dashboard.php"> History </a>
               </li>
 
               <li>
-                <a class="text-white transition font-semibold hover:text-white/75" href="#"> Services </a>
+                <a class="text-white transition font-semibold hover:text-white/75" href="./views/Dashboard.php"> Services </a>
               </li>
 
               <li>
-                <a class="text-white transition font-semibold hover:text-white/75" href="#"> Projects </a>
+                <a class="text-white transition font-semibold hover:text-white/75" href="./views/Dashboard.php"> Projects </a>
               </li>
 
               <li>
-                <a class="text-white transition font-semibold hover:text-white/75" href="#"> Blog </a>
+                <a class="text-white transition font-semibold hover:text-white/75" href="./views/Dashboard.php"> Blog </a>
               </li>
             </ul>
           </nav>
