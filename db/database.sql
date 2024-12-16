@@ -1,23 +1,25 @@
-CREATE DATABASE GestionnaireFut;
+CREATE DATABASE Futgestionnaire;
 
-USE GestionnaireFut;
-CREATE TABLE Nationalities(
+USE Futgestionnaire;
+
+-- Nationalities Table
+CREATE TABLE Nationalities (
    id INT AUTO_INCREMENT,
    name VARCHAR(250) NOT NULL UNIQUE,
    flag VARCHAR(250) NOT NULL UNIQUE,
    PRIMARY KEY(id)
 );
 
-CREATE TABLE Clubs(
+-- Clubs Table
+CREATE TABLE Clubs (
    id INT AUTO_INCREMENT,
    name VARCHAR(250) NOT NULL UNIQUE,
    logo VARCHAR(250) NOT NULL UNIQUE,
-   PRIMARY KEY(id),
-
-
+   PRIMARY KEY(id)
 );
 
-CREATE TABLE Details_players(
+-- Details for players Table
+CREATE TABLE Details_players (
    id INT AUTO_INCREMENT,
    pace INT NOT NULL,
    shooting INT NOT NULL,
@@ -28,7 +30,8 @@ CREATE TABLE Details_players(
    PRIMARY KEY(id)
 );
 
-CREATE TABLE Details_GKs(
+-- Details for Goalkeepers Table
+CREATE TABLE Details_GKs (
    id INT AUTO_INCREMENT,
    diving INT NOT NULL,
    handling INT NOT NULL,
@@ -39,7 +42,8 @@ CREATE TABLE Details_GKs(
    PRIMARY KEY(id)
 );
 
-CREATE TABLE Players(
+-- Players Table
+CREATE TABLE Players (
    id INT AUTO_INCREMENT,
    name VARCHAR(250) NOT NULL,
    rating INT NOT NULL,
@@ -52,7 +56,6 @@ CREATE TABLE Players(
    PRIMARY KEY(id),
    FOREIGN KEY(id_nationality) REFERENCES Nationalities(id),
    FOREIGN KEY(id_club) REFERENCES Clubs(id),
-   FOREIGN KEY(id_detail_gk) REFERENCES Detail_GKs(id),
-   FOREIGN KEY(id_detail_player) REFERENCES Detail_players(id)
+   FOREIGN KEY(id_detail_gk) REFERENCES Details_GKs(id), -- Fixed table name here
+   FOREIGN KEY(id_detail_player) REFERENCES Details_players(id)
 );
-
