@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <?php
-include('./connexion.php');
+include('../connexion.php');
 ?>
 <html lang="en">
 
@@ -16,7 +16,7 @@ include('./connexion.php');
 <body class="bg-gradient-to-r from-[#2DBAFF] via-[#2DBAFF] to-[#83b3963d]">
     <main class="w-screen h-screen flex">
         <section class="bg-white shadow-lg h-screen fixed top-0 left-0 min-w-[250px] py-6 px-4 font-[sans-serif]">
-            <a href="#"><img src="../public/img/pl-main-logo.png" alt="logo" class='w-[100px] h-24' /></a>
+            <a href="#"><img src="../../public/img/pl-main-logo.png" alt="logo" class='w-[100px] h-24' /></a>
             <ul class="mt-6">
                 <li>
                     <a href="#"
