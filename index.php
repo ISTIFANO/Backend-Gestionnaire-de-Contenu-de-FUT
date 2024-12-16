@@ -46,7 +46,7 @@
               </li>
 
               <li>
-                <a class="text-white transition font-semibold hover:text-white/75" href="./views/Dashboard.php"> Careers </a>
+                <a class="text-white transition font-semibold hover:text-white/75" href="./views/ProblemSolving.php"> Careers </a>
               </li>
 
               <li>
