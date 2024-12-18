@@ -59,7 +59,7 @@ include('../connexion.php');
                         </a>
                     </li>
                     <li>
-                        <a href="#"
+                        <a href="../Nationalite/Nationalite.php"
                             class="text-black hover:text-blue-600 text-sm flex items-center hover:bg-blue-50 rounded px-4 py-3 transition-all">
                             <svg fill="#000000" width="30px" height="50px" viewBox="0 0 36 36" version="1.1" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                                 <title>flag-solid</title>
@@ -145,14 +145,16 @@ include('../connexion.php');
                     <ul class="flex bg-gray-100">
                         <li id=""
                             class="text-white font-bold  w-full text-center bg-purple-500 py-3 px-6 cursor-pointer">
+                            <!-- <input type="hidden" name="Gkid"> -->
                             All Players</li>
+                            
                         <li id=""
                             class="text-gray-600 font-bold  w-full text-center bg-gray-200	 py-3 px-6 cursor-pointer">
 
                             <a href="../CrudJoueurs/Ajouter.php"> Ajouter</a>
 
                         </li>
-                        <li id=""
+                        <!-- <li id=""
                             class="text-gray-600 font-semibold  w-full text-center py-3 px-6 cursor-pointer">
 
                             <a href="../CrudJoueurs/Modifier.php"> mise a jour</a>
@@ -162,7 +164,7 @@ include('../connexion.php');
                             class="text-gray-600 font-semibold  w-full text-center py-3 px-6 cursor-pointer">
                             <a href="../CrudJoueurs/Supprimer.php"> Supprimer</a>
 
-                        </li>
+                        </li> -->
                     </ul>
 
 
