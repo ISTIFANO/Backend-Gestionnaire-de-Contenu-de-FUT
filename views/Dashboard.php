@@ -139,13 +139,205 @@ include('./connexion.php');
             </div>
         </section>
 
+
         <section class="ml-[250px] w-full py-6 px-4">
             <div id="content-area">
-                <h1>Welcome!</h1>
-                <p>Please select an item from the dashboard to see more details.</p>
+         
+          <div id="popupModal"
+            class="   items-center justify-center ">
+            <div class="bg-white rounded-lg p-6 w-96  ">
+              <h2 class="text-lg font-semibold text-gray-800 mb-4">Ajouter jouoeur </h2>
+              <form   method="post" action="../views/CrudJoueurs/Ajouter.php" >
+                <div class="mb-4 flex flex-wrap gap-4">
+                  <!-- Name Input -->
+                  <div class="w-full ">
+                    <label class="block text-sm font-medium text-gray-700">Name</label>
+                    <input id="nameN" type="rang" name="PlayerName"
+                      class="mt-1 block w-full border  border-black border-2 rounded-lg shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                      required>
+                  </div>
+
+                  <!-- Position Input -->
+                  <!-- <div class="w-full ">
+                    <label class="block text-sm font-medium text-gray-700">Position</label>
+                    <input id="position" type="text"
+                      class="mt-1 block w-full  border  border-black border-2 rounded-lg shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                      required>
+                  </div> -->
+
+                  <!-- Rating Input -->
+
+                 
+
+
+                
+<?php 
+include('./connexion.php');
+
+$query="SELECT DISTINCT position_player FROM Players";
+
+$resultat =mysqli_query($conn,$query);
+
+echo' 
+  <label for="position" class="block text-sm font-medium text-gray-900"> Position </label>
+
+
+<select
+      name="Position"
+      class="mt-1.5 w-1/2 rounded-lg border-gray-300 text-gray-700 sm:text-sm"
+    >';
+while($row =mysqli_fetch_assoc($resultat)){
+
+    echo' 
+<option name="PlayerPosition" value='.$row["id"].'>'.
+ $row["position_player"].'</option>';
+}
+echo'</select>
+  </div>';
+?>
+
+                  <div class="w-full ">
+                    <label class="block text-sm font-medium text-gray-700">Rating</label>
+                    <input id="rating" type="range" name="Rating" min="1" max="100"
+                      class=""
+                      required>
+                  </div>
+
+                  <!-- Photo Input -->
+                  <div class="w-1/2 flex flex-row">
+                    <label class="block text-sm font-medium text-gray-700">Photo </label>
+                      <input id="Photo" type="text" name="PhotoPlayer" class="mt-1 block w-48  border border-black border-2 rounded-lg shadow-sm "
+                        required>
+                  
+                  </div>
+
+                  <!-- Nationality Input -->
+                  <div class="w-1/2 ">
+                  <?php 
+
+$query_nationnalitee="SELECT DISTINCT name FROM Nationalities";
+
+$nationnalitee =mysqli_query($conn,$query_nationnalitee);
+
+echo' <select
+      name="Position"
+      class="mt-1.5 w-full rounded-lg border-gray-300 text-gray-700 sm:text-sm"
+    >';
+while($row =mysqli_fetch_assoc($nationnalitee)){
+
+    echo' 
+<option name="NationalitiesPlayer" value='.$row["id"].'>'.
+ $row["name"].'</option>';
+}
+echo'</select>
+  </div>';
+?>
+
+             <!-- </div> -->
+
+                  <!-- Flag Input -->
+                  <div class="w-1/2 flex flex-row">
+                    <label class="block text-sm font-medium text-gray-700">Logo </label>
+                      <input id="logo" type="text" name="LogoPlayer" class="" class="mt-1 block w-48  border border-black border-2 rounded-lg shadow-sm "
+                        required>
+                  
+                  </div>
+
+                  <!-- Club Input -->
+                  <div class="w-1/2 ">
+                  <?php 
+
+$query_clubs="SELECT DISTINCT name FROM Clubs";
+
+$clubs =mysqli_query($conn,$query_clubs);
+
+echo' <select
+      name="Position"
+      class="mt-1.5 w-1/2 rounded-lg border-gray-300 text-gray-700 sm:text-sm"
+    >';
+while($row =mysqli_fetch_assoc($clubs)){
+
+    echo' 
+<option name="ClubName" value='.$row["id"].'>'.
+ $row["name"].'</option>';
+}
+echo'</select>
+  ';
+?>
+                  </div>
+
+                  <!-- Club Flag Input -->
+                  <div class="w-1/2 flex flex-row">
+                    <label class="block text-sm font-medium text-gray-700">Flag </label>
+                      <input id="Flag" name="Flag" type="text" class="" class="mt-1 block w-48  border border-black border-2 rounded-lg shadow-sm "
+                        required>
+                  
+                  </div>
+
+                  <!-- Pace Input -->
+                  <div class="w-full ">
+                    <label class="block text-sm font-medium text-gray-700">Pace</label>
+                    <input id="pace" name="pace" type="range" min="1" max="100"
+                      class="mt-1 block w-1/2  border  border-black border-2 rounded-lg shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                      required>
+                  </div>
+
+                  <!-- Shooting Input -->
+                  <div class="w-full ">
+                    <label class="block text-sm font-medium text-gray-700">Shooting</label>
+                    <input id="shooting" name="Shooting" type="range" min="1" max="100"
+                      class="mt-1 block w-1/2  border  border-black border-2 rounded-lg shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                      required>
+                  </div>
+
+                  <!-- Passing Input -->
+                  <div class="w-full ">
+                    <label class="block text-sm font-medium text-gray-700">Passing</label>
+                    <input id="passing" type="range" min="1" max="100"
+                      class="mt-1 block w-1/2 border  border-black border-2 rounded-lg  shadow-sm focus:border-indigo-500 focus:ring-indigo-"
+                      required>
+                  </div>
+
+                  <!-- Dribbling Input -->
+                  <div class="w-full ">
+                    <label class="block text-sm font-medium text-gray-700">Dribbling</label>
+                    <input id="dribbling"  name="Dribbling" type="range" min="1" max="100"
+                      class="mt-1 block w-1/2  border  border-black border-2 rounded-lg shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                      required>
+                  </div>
+
+                  <!-- Defending Input -->
+                  <div class="w-full ">
+                    <label class="block text-sm font-medium text-gray-700">Defending</label>
+                    <input id="defending" name="defending" type="range" min="1" max="100"
+                      class="mt-1 block w-1/2  border  border-black border-2 rounded-lg shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                      required>
+                  </div>
+
+                  <!-- Physical Input -->
+                  <div class="w-full ">
+                    <label class="block text-sm font-medium text-gray-700">Physical</label>
+                    <input id="physical" name="Physical" type="range" min="1" max="100"
+                      class="mt-1 block w-1/2  border  border-black border-2 rounded-lg shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                      required>
+                  </div>
+              <input type="submit" name="sibmitFormAjout"                   class="w-24 bg-indigo-600 text-white  py-2 mt-3 hover:bg-indigo-700 focus:outline-none focus:ring"
+              value="Submit">
+              <button class="mt-4 w-24 text-center text-sm text-gray-500 hover:text-gray-800" onclick="PopUp()">
+                Close
+              </button>
+              </form>
+
+            
+            </div>
+          </div>
+          <!-- <button class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg shadow">List</button> -->
+        </div>
+
             </div>
         </section>
     </main>
+    
 </body>
 
 </html>

@@ -40,7 +40,7 @@ include('../connexion.php');
                             <svg fill="#000000" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                                 width="30px" height="50px" viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve">
                                 <g>
-                                    <path d="M96.117,57.583l-16.185-7.719c3.774-2.373,6.338-7.016,6.338-12.354c0-7.754-5.397-14.034-12.058-14.034
+                                      <path d="M96.117,57.583l-16.185-7.719c3.774-2.373,6.338-7.016,6.338-12.354c0-7.754-5.397-14.034-12.058-14.034
 		c-2.289,0-4.403,0.781-6.223,2.066c1.086,2.756,1.701,5.796,1.701,8.999c0,4.782-1.411,9.317-3.825,13.066
 		c0.833,0.932,1.771,1.735,2.809,2.36l-0.01,0.003l10.426,4.971c2.947,1.427,4.853,4.583,4.853,8.045v13.54h11.148
 		c1.489,0,2.694-1.401,2.694-3.13V60.492C97.785,59.21,97.126,58.072,96.117,57.583z" />
@@ -71,7 +71,7 @@ include('../connexion.php');
                         </a>
                     </li>
                     <li>
-                        <a href="#"
+                        <a href="../Equipe/Equipe.php"
                             class="text-black hover:text-blue-600 text-sm flex items-center hover:bg-blue-50 rounded px-4 py-3 transition-all">
                             <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                                 width="30px" height="50px" viewBox="0 0 961.945 961.945" style="enable-background:new 0 0 961.945 961.945;"
@@ -146,8 +146,9 @@ include('../connexion.php');
                         <li id=""
                             class="text-white font-bold  w-full text-center bg-purple-500 py-3 px-6 cursor-pointer">
                             <!-- <input type="hidden" name="Gkid"> -->
-                            All Players</li>
-                            
+                            All Players
+                        </li>
+
                         <li id=""
                             class="text-gray-600 font-bold  w-full text-center bg-gray-200	 py-3 px-6 cursor-pointer">
 
@@ -175,17 +176,18 @@ include('../connexion.php');
 
             include('../connexion.php');
 
-            $query = "SELECT Players.name AS playerName,Nationalities.flag AS Flag,Players.photo AS PlayerPic,Rating,Clubs.logo AS logo, pace
+            $query = "SELECT Players.position_player,Players.name AS playerName,Nationalities.flag AS Flag,Players.photo AS PlayerPic,Rating,Clubs.logo AS logo, pace
 shooting,
 passing,
 pace,
 dribbling,
 defending,
-physical FROM Players INNER JOIN Nationalities ON Nationalities.id=Players.id INNER JOIN Clubs ON Clubs.id=Players.id INNER JOIN Details_players ON Details_players.id =Players.id;";
+physical FROM Players INNER JOIN Nationalities ON Nationalities.id=Players.id INNER JOIN Clubs ON Clubs.id=Players.id INNER JOIN Details_players ON Details_players.id =Players.id  
+WHERE Players.position_player <> 'GK';";
 
             $resultat = mysqli_query($conn, $query);
 
-            echo '<div class="font-[sans-serif] overflow-x-auto">
+            echo '    <section class="h-1/2 overflow-auto " > <div class="font-[sans-serif] overflow-x-auto">
       <table class="min-w-full bg-white">
         <thead class="bg-gray-800 whitespace-nowrap">
           <tr>
@@ -195,6 +197,7 @@ physical FROM Players INNER JOIN Nationalities ON Nationalities.id=Players.id IN
             <th class="p-4 text-left text-sm font-medium text-white">
               name
             </th>
+            
             <th class="p-4 text-left text-sm font-medium text-white">
               Clubs
             </th>
@@ -231,7 +234,7 @@ physical FROM Players INNER JOIN Nationalities ON Nationalities.id=Players.id IN
          
             <td class="p-4 text-sm text-black"><img src=' . $row["PlayerPic"] . ' class="h-8" alt="player" /></td>  ' . '
             <td>
-               '. $row["playerName"] .
+               ' . $row["playerName"] .
                     '</td>
 
              <td class="p-4 text-sm text-black">
@@ -276,6 +279,11 @@ physical FROM Players INNER JOIN Nationalities ON Nationalities.id=Players.id IN
                     data-original="#000000" />
                 </svg>
               </button>
+                  <button class="mr-4" title="Edit">
+          <svg fill="#000000" width="20px" height="40px" viewBox="0 0 512 512" id="_14_Add" data-name="14 Add" xmlns="http://www.w3.org/2000/svg">
+  <path id="Path_19" data-name="Path 19" d="M256,512C114.625,512,0,397.391,0,256S114.625,0,256,0C397.391,0,512,114.609,512,256S397.391,512,256,512Zm0-448C149.969,64,64,149.969,64,256s85.969,192,192,192c106.047,0,192-85.969,192-192S362.047,64,256,64Zm32,320H224V288H128V224h96V128h64v96h96v64H288Z" fill-rule="evenodd"/>
+</svg>
+  </button>
               <button class="mr-4" title="Delete">
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-5 fill-red-500 hover:fill-red-700" viewBox="0 0 24 24">
                   <path
@@ -290,17 +298,152 @@ physical FROM Players INNER JOIN Nationalities ON Nationalities.id=Players.id IN
         ';
             }
             echo "  
-      </table>";
-
-
-
+      </table>     </section> ";
 
             ?>
 
+
+            <?php
+
+            include('../connexion.php');
+
+            $query = "SELECT Players.position_player,Players.name AS playerName,Nationalities.flag AS Flag,Players.photo AS PlayerPic,Rating,Clubs.logo AS logo,
+            diving,
+            handling,
+            kicking,
+            reflexes,
+            speed,
+            positioning 
+            FROM Players INNER JOIN Nationalities ON Nationalities.id=Players.id INNER JOIN Clubs ON Clubs.id=Players.id INNER JOIN Details_GKs ON Details_GKs.id =Players.id  
+            WHERE Players.position_player = 'GK';";
+
+            $resultat = mysqli_query($conn, $query);
+
+            echo '    <section> <div class="font-[sans-serif] overflow-x-auto">
+<table class="min-w-full bg-white">
+<thead class="bg-gray-800 whitespace-nowrap">
+<tr>
+<th class="p-4 text-left text-sm font-medium text-white">
+  Photo
+</th>
+<th class="p-4 text-left text-sm font-medium text-white">
+  name
+</th>
+<th class="p-4 text-left text-sm font-medium text-white">
+  Clubs
+</th>
+
+<th class="p-4 text-left text-sm font-medium text-white">
+  Nationalities
+</th>
+<th class="p-4 text-left text-sm font-medium text-white">
+  Rating
+</th>
+<th class="p-4 text-left text-sm font-medium text-white">
+  diving
+</th>
+<th class="p-4 text-left text-sm font-medium text-white">
+  handling
+</th>
+   <th class="p-4 text-left text-sm font-medium text-white">
+  kicking
+</th>
+   <th class="p-4 text-left text-sm font-medium text-white">
+  reflexes
+</th>
+<th class="p-4 text-left text-sm font-medium text-white">
+  speed
+</th>
+   <th class="p-4 text-left text-sm font-medium text-white">
+  positioning
+</th>
+  <th class="p-4 text-left text-sm font-medium text-white">
+  
+</th>
+</tr>
+</thead> <tr class="bg-blue-50">';
+            while ($row = mysqli_fetch_assoc($resultat)) {
+                //    echo "<h1>". $row["name"]."</h1>";
+                echo '
+
+<td class="p-4 text-sm text-black"><img src=' . $row["PlayerPic"] . ' class="h-8" alt="player" /></td>  ' . '
+<td>
+   ' . $row["playerName"] .
+                    '</td>
+
+ <td class="p-4 text-sm text-black">
+ 
+ <img src=' . $row["logo"] . ' class="h-8" alt="player" />
+ 
+ </td>
+   <td class="p-4 text-sm text-black">
+ 
+ <img src=' . $row["Flag"] . ' class="h-8" alt="player" />
+ 
+ </td>
+
+<td class="p-4 text-sm text-black">' . $row["Rating"] .
+                    '
+</td>
+<td class="p-4 text-sm text-black">' . $row["diving"] .
+                    '
+</td>
+<td class="p-4 text-sm text-black">' . $row["handling"] .
+                    '
+</td>
+<td class="p-4 text-sm text-black">' . $row["kicking"] .
+                    '
+</td>
+<td class="p-4 text-sm text-black">' . $row["reflexes"] .
+                    '
+</td>
+<td class="p-4 text-sm text-black">' . $row["speed"] .
+                    '
+</td>
+</td>
+<td class="p-4 text-sm text-black">' . $row["positioning"] .
+                    '
+</td>
+
+
+<td class="p-4">
+  <button class="mr-4" title="Edit">
+    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 fill-blue-500 hover:fill-blue-700"
+      viewBox="0 0 348.882 348.882">
+      <path
+        d="m333.988 11.758-.42-.383A43.363 43.363 0 0 0 304.258 0a43.579 43.579 0 0 0-32.104 14.153L116.803 184.231a14.993 14.993 0 0 0-3.154 5.37l-18.267 54.762c-2.112 6.331-1.052 13.333 2.835 18.729 3.918 5.438 10.23 8.685 16.886 8.685h.001c2.879 0 5.693-.592 8.362-1.76l52.89-23.138a14.985 14.985 0 0 0 5.063-3.626L336.771 73.176c16.166-17.697 14.919-45.247-2.783-61.418zM130.381 234.247l10.719-32.134.904-.99 20.316 18.556-.904.99-31.035 13.578zm184.24-181.304L182.553 197.53l-20.316-18.556L294.305 34.386c2.583-2.828 6.118-4.386 9.954-4.386 3.365 0 6.588 1.252 9.082 3.53l.419.383c5.484 5.009 5.87 13.546.861 19.03z"
+        data-original="#000000" />
+      <path
+        d="M303.85 138.388c-8.284 0-15 6.716-15 15v127.347c0 21.034-17.113 38.147-38.147 38.147H68.904c-21.035 0-38.147-17.113-38.147-38.147V100.413c0-21.034 17.113-38.147 38.147-38.147h131.587c8.284 0 15-6.716 15-15s-6.716-15-15-15H68.904C31.327 32.266.757 62.837.757 100.413v180.321c0 37.576 30.571 68.147 68.147 68.147h181.798c37.576 0 68.147-30.571 68.147-68.147V153.388c.001-8.284-6.715-15-14.999-15z"
+        data-original="#000000" />
+    </svg>
+  </button>
+      <button class="mr-4" title="Edit">
+<svg fill="#000000" width="20px" height="40px" viewBox="0 0 512 512" id="_14_Add" data-name="14 Add" xmlns="http://www.w3.org/2000/svg">
+<path id="Path_19" data-name="Path 19" d="M256,512C114.625,512,0,397.391,0,256S114.625,0,256,0C397.391,0,512,114.609,512,256S397.391,512,256,512Zm0-448C149.969,64,64,149.969,64,256s85.969,192,192,192c106.047,0,192-85.969,192-192S362.047,64,256,64Zm32,320H224V288H128V224h96V128h64v96h96v64H288Z" fill-rule="evenodd"/>
+</svg>
+</button>
+  <button class="mr-4" title="Delete">
+    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 fill-red-500 hover:fill-red-700" viewBox="0 0 24 24">
+      <path
+        d="M19 7a1 1 0 0 0-1 1v11.191A1.92 1.92 0 0 1 15.99 21H8.01A1.92 1.92 0 0 1 6 19.191V8a1 1 0 0 0-2 0v11.191A3.918 3.918 0 0 0 8.01 23h7.98A3.918 3.918 0 0 0 20 19.191V8a1 1 0 0 0-1-1Zm1-3h-4V2a1 1 0 0 0-1-1H9a1 1 0 0 0-1 1v2H4a1 1 0 0 0 0 2h16a1 1 0 0 0 0-2ZM10 4V3h4v1Z"
+        data-original="#000000" />
+      <path d="M11 17v-7a1 1 0 0 0-2 0v7a1 1 0 0 0 2 0Zm4 0v-7a1 1 0 0 0-2 0v7a1 1 0 0 0 2 0Z"
+        data-original="#000000" />
+    </svg>
+  </button>
+</td></tr>
+</tbody>
+';
+            }
+            echo "  
+</table>     </section> ";
+
+            ?>
             </div>
 
         </section>
-        
+
     </main>
 </body>
 
