@@ -123,7 +123,7 @@ include('../connexion.php');
                 <h6 class="text-blue-600 text-sm font-bold px-4">Actions</h6>
                 <ul class="mt-3">
                     <li>
-                        <a href="#"
+                        <a href="../CrudJoueurs/Ajouter.php"
                             class="text-black hover:text-blue-600 text-sm flex items-center hover:bg-blue-50 rounded px-4 py-3 transition-all">
                             <svg width="30px" height="50px" viewBox="0 0 24 24"
                                 xmlns="http://www.w3.org/2000/svg" fill="none">

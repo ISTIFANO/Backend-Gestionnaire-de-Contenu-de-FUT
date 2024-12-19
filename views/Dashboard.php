@@ -174,7 +174,7 @@ include('./connexion.php');
 <?php 
 include('./connexion.php');
 
-$query="SELECT DISTINCT position_player FROM Players";
+$query="SELECT DISTINCT position_player,id FROM Players";
 
 $resultat =mysqli_query($conn,$query);
 
@@ -183,7 +183,7 @@ echo'
 
 
 <select
-      name="Position"
+    
       class="mt-1.5 w-1/2 rounded-lg border-gray-300 text-gray-700 sm:text-sm"
     >';
 while($row =mysqli_fetch_assoc($resultat)){
@@ -215,12 +215,12 @@ echo'</select>
                   <div class="w-1/2 ">
                   <?php 
 
-$query_nationnalitee="SELECT DISTINCT name FROM Nationalities";
+$query_nationnalitee="SELECT DISTINCT name,id FROM Nationalities";
 
-$nationnalitee =mysqli_query($conn,$query_nationnalitee);
+$nationnalitee=mysqli_query($conn,$query_nationnalitee);
 
-echo' <select
-      name="Position"
+echo'<select
+      
       class="mt-1.5 w-full rounded-lg border-gray-300 text-gray-700 sm:text-sm"
     >';
 while($row =mysqli_fetch_assoc($nationnalitee)){
@@ -247,7 +247,7 @@ echo'</select>
                   <div class="w-1/2 ">
                   <?php 
 
-$query_clubs="SELECT DISTINCT name FROM Clubs";
+$query_clubs="SELECT DISTINCT name,id FROM Clubs";
 
 $clubs =mysqli_query($conn,$query_clubs);
 
