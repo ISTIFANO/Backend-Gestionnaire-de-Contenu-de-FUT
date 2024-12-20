@@ -8,8 +8,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->bind_param("ss", $name, $flag); 
     if ($stmt->execute()) {
         echo "succ";
+
     } else {
         echo "error";
+        // echo "error";
+
     }
     $stmt->close();
 } 
