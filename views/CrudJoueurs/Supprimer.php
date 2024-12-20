@@ -1,23 +1,23 @@
 <?php
 include "../connexion.php";
 
-$idplayers = $_GET['id'];
+$idplayers = $_GET['delete'];
 echo $idplayers;
 
-//     $stmt = $conn->prepare("DELETE FROM Playres WHERE id = ?");
-//     $stmt->bind_param("i", $idplayers); 
-//     if ($stmt->execute()) {
+    $stmt = $conn->prepare("DELETE FROM Players WHERE id = ?");
+    $stmt->bind_param("i", $idplayers); 
+    if ($stmt->execute()) {
         
-//     } else {
-//         echo "error";
-//     }
+    } else {
+        echo "error";
+    }
 
-//     $stmt->close();
+    $stmt->close();
 
 
-// $conn->close();
+$conn->close();
 
-// require_once('./../Joueurs/Joueurs.php');
+require_once('./../Joueurs/Joueurs.php');
 
 
 ?>

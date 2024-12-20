@@ -10,8 +10,8 @@
    Ultimate Team (FUT) football lineup">
   <script src="https://cdn.tailwindcss.com"></script>
 
-   <link href="./src/output.css" rel="stylesheet">
-   <link rel="stylesheet" href="./public/css/style.css">
+  <link href="./src/output.css" rel="stylesheet">
+  <link rel="stylesheet" href="./public/css/style.css">
   <link rel="shortcut icon" href="./public/img/pl-main-logo.png" type="image/x-icon">
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
@@ -24,8 +24,8 @@
       <a href="#"  class="inline-block underline">Check out this new course!</a>
     </p> -->
     <marquee width="40%" direction="left" height="38px">
-    <img src="./public/img/remove_-removebg-preview.png" class="h-10" alt="teams img">
-  </marquee>
+      <img src="./public/img/remove_-removebg-preview.png" class="h-10" alt="teams img">
+    </marquee>
     <!-- <span id="headerTeam" > </span> -->
   </header>
   <nav class=" bg-[#000814]">
@@ -114,7 +114,7 @@
           <div class="flex justify-around mt-4">
             <div>
               <span class="block text-sm">Players Selected</span>
-              <span  id="NumberOfplayers" class="font-bold text-xl">0</span>
+              <span id="NumberOfplayers" class="font-bold text-xl">0</span>
             </div>
             <div>
               <span class="block text-sm">Team Rating</span>
@@ -126,7 +126,7 @@
         <div class="flex justify-center gap-4 mb-4">
           <button class="px-4 py-2 bg-blue-500 text-white rounded-lg shadow" id="popupButton" onclick="PopUp()">Ajouter
             Les joueurs</button>
-          
+
           <!-- <button class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg shadow">List</button> -->
         </div>
 
@@ -155,7 +155,7 @@
           <div id="item10" class="item transition-all h-48  hover:scale-105">
           </div>
           <div id="item11" class="item transition-all h-48  hover:scale-105">
-            
+
 
           </div>
         </div>
@@ -174,10 +174,55 @@
             <option value="442">4-4-2</option>
             <option value="352">3-5-2</option>
           </select>
-          
-          
+
+
         </div>
         <div class="overflow-y-scroll max-h-full  flex flex-col" id="displayAllplayers">
+
+          <?php
+          include("./views/connexion.php");
+
+          $Query = "SELECT  Players.position_player,Players.id As id,Nationalities.id As Natid,Clubs.id AS idClubs,Details_players.id As stisticId,Players.name AS playerName,Nationalities.flag AS Flag,Players.photo AS PlayerPic,Rating,Clubs.logo AS logo, pace
+shooting,
+passing,
+pace,
+dribbling,
+defending,
+physical FROM Players INNER JOIN Nationalities ON Nationalities.id=Players.id INNER JOIN Clubs ON Clubs.id=Players.id INNER JOIN Details_players ON Details_players.id =Players.id  
+WHERE Players.position_player <> 'GK';";
+
+          $resultat = mysqli_query($conn, $Query);
+
+          while ($row = mysqli_fetch_assoc($resultat)) {
+
+          ?>
+
+            <div style="cursor: all-scroll;" draggable="true" class="PlayersCard flex justify-items-center flex-col border justify-start p-4 col-resize">
+              <div class="flex items-center">
+                <div id="imgDiv" class="flex items-center justify-center w-6 h-6 bg-gray-200 rounded-full text-purple-600 font-bold">
+                  <img src=<?php echo $row["photo"]; ?> class="h-auto w-auto" alt="$">
+                </div>
+                <div class="ml-4">
+                  <div class="font-bold text-gray-800"><?php echo $row["name"] ?></div>
+                  <div class="text-sm text-gray-500"> <?php echo $row["position"] ?><span class="text-green"><?php echo $row["dribbling"] ?></span></div>
+                </div>
+              </div>
+              <div class="flex items-center space-x-4">
+                <div id="photoPlayer" class="text-gray-800 font-semibold"><?php echo $row["passing"] ?></div>
+                <div class=" itemsRating text-gray-800 font-semibold"><?php echo $row["defending"] ?></div>
+              </div>
+            </div>
+
+
+          <?php
+
+          } ?>
+
+
+
+
+
+
 
         </div>
       </div>
