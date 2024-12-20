@@ -150,8 +150,8 @@ include('../connexion.php');
 $query = "SELECT *FROM Clubs;";
 
 $resultat = mysqli_query($conn, $query);
-
-echo '<div class="font-[sans-serif] overflow-x-auto">
+?>
+<div class="font-[sans-serif] overflow-x-auto">
 <table class="min-w-full bg-white">
 <thead class="bg-gray-800 whitespace-nowrap">
 <tr>
@@ -162,18 +162,26 @@ echo '<div class="font-[sans-serif] overflow-x-auto">
   name
 </th>
 <th class="p-4 text-left text-sm font-medium text-white">
-  
+<button class="mr-4" title="Edit" onclick="showModal()">
+  <svg fill="#000000" width="20px" height="40px" viewBox="0 0 512 512" id="_14_Add" data-name="14 Add" xmlns="http://www.w3.org/2000/svg">
+    <path id="Path_19" data-name="Path 19" d="M256,512C114.625,512,0,397.391,0,256S114.625,0,256,0C397.391,0,512,114.609,512,256S397.391,512,256,512Zm0-448C149.969,64,64,149.969,64,256s85.969,192,192,192c106.047,0,192-85.969,192-192S362.047,64,256,64Zm32,320H224V288H128V224h96V128h64v96h96v64H288Z" fill-rule="evenodd"/>
+  </svg>
+</button>
+
 </th>
 </tr>
-</thead> <tr class="bg-blue-50">';
+</thead> <tr class="bg-blue-50">;
+<?php
 while ($row = mysqli_fetch_assoc($resultat)) {
     //    echo "<h1>". $row["name"]."</h1>";
-    echo '
+    ?>
 
-<td class="p-4 text-sm text-black"><img src=' . $row["logo"] . ' class="h-8" alt="player" /></td>  ' . '
-<td>
-   '. $row["name"] .
-        '</td>
+<td class="p-4 text-sm text-black"><img src="<?php echo $row["logo"];?>" class="h-8" alt="player" />
+
+</td> 
+<td><?php echo$row["name"]; ?>
+        </td>
+
 
 <td class="p-4 flex justify-center">
   <button class="mr-4" title="Edit">
@@ -187,11 +195,6 @@ while ($row = mysqli_fetch_assoc($resultat)) {
         data-original="#000000" />
     </svg>
   </button>
-<button class="mr-4" title="Edit" onclick="showModal()">
-  <svg fill="#000000" width="20px" height="40px" viewBox="0 0 512 512" id="_14_Add" data-name="14 Add" xmlns="http://www.w3.org/2000/svg">
-    <path id="Path_19" data-name="Path 19" d="M256,512C114.625,512,0,397.391,0,256S114.625,0,256,0C397.391,0,512,114.609,512,256S397.391,512,256,512Zm0-448C149.969,64,64,149.969,64,256s85.969,192,192,192c106.047,0,192-85.969,192-192S362.047,64,256,64Zm32,320H224V288H128V224h96V128h64v96h96v64H288Z" fill-rule="evenodd"/>
-  </svg>
-</button>
 
 
 <div id="modal" class="modal">
@@ -215,6 +218,7 @@ while ($row = mysqli_fetch_assoc($resultat)) {
 </div>
 
   <button class="mr-4" title="Delete">
+  <a href="Supprimer.php?id=<?php echo ($row["id"]) ?>">
     <svg xmlns="http://www.w3.org/2000/svg" class="w-5 fill-red-500 hover:fill-red-700" viewBox="0 0 24 24">
       <path
         d="M19 7a1 1 0 0 0-1 1v11.191A1.92 1.92 0 0 1 15.99 21H8.01A1.92 1.92 0 0 1 6 19.191V8a1 1 0 0 0-2 0v11.191A3.918 3.918 0 0 0 8.01 23h7.98A3.918 3.918 0 0 0 20 19.191V8a1 1 0 0 0-1-1Zm1-3h-4V2a1 1 0 0 0-1-1H9a1 1 0 0 0-1 1v2H4a1 1 0 0 0 0 2h16a1 1 0 0 0 0-2ZM10 4V3h4v1Z"
@@ -222,31 +226,15 @@ while ($row = mysqli_fetch_assoc($resultat)) {
       <path d="M11 17v-7a1 1 0 0 0-2 0v7a1 1 0 0 0 2 0Zm4 0v-7a1 1 0 0 0-2 0v7a1 1 0 0 0 2 0Z"
         data-original="#000000" />
     </svg>
+  </a>
   </button>
 </td></tr>
 </tbody>
-';
-}
-echo "  
-</table>";
-
-
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
-    $name = $_POST['name'];
-    $flag = $_POST['flag'];
-    $stmt = $conn->prepare("INSERT INTO Clubs (name, logo) VALUES (?, ?)");
-    $stmt->bind_param("ss", $name, $flag); 
-    if ($stmt->execute()) {
-        echo "succ";
-    } else {
-        echo "error";
-    }
-    $stmt->close();
+<?php
 }
 
 ?>
+</table>
 
 
 

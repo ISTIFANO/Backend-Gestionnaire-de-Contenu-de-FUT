@@ -435,7 +435,7 @@ WHERE Players.position_player <> 'GK';";
 </td></tr>
 </tbody>
 ';
-        }
+            }
             echo "  
 </table>     </section> ";
 
