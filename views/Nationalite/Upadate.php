@@ -199,7 +199,6 @@ include('../connexion.php');
 
       <input type="text" value=<?php echo $arr["name"]; ?>
         class="px-4 py-3 bg-gray-100 w-full text-sm outline-none border-b-2 border-transparent focus:border-blue-500 rounded" />
-
 <a   class="!mt-8 w-full px-4 py-2.5 mx-auto block text-sm bg-blue-500 text-white rounded hover:bg-blue-600"  href="Update.php?id=<?php echo $arr["id"];?>&flag=<?php echo $arr["flag"];?>&name=<?php echo $arr["name"];?>">Submit</a>
     </form>
         </div>

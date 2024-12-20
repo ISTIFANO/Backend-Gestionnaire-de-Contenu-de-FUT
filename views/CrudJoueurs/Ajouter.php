@@ -6,11 +6,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $playerName = $_POST['PlayerName'];
     $playerPosition = $_POST['PlayerPosition'];
     $rating = $_POST['Rating'];
-    $photoPlayer = $_POST['PhotoPlayer'];
     $nationalitiesPlayer = $_POST['NationalitiesPlayer'];
     $logoPlayer = $_POST['LogoPlayer'];
     $clubName = $_POST['ClubName'];
-    $flag = $_POST['Flag'];
     $pace = $_POST['Pace'];
     $shooting = $_POST['Shooting'];
     $passing = $_POST['Passing'];
@@ -23,26 +21,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $result = mysqli_query($conn,$query_Count);
     $id = mysqli_fetch_row($result);
    $idCounter= $id[0]+1;
-//    echo   $idCounter;
+echo   $idCounter;
 }
   
-// $query = "INSERT INTO Players (name, rating, position_player, photo, id_nationality, id_club, id_detail_player)
-// VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-
-// if ($stmt = mysqli_prepare($conn, $query)) {
-//     mysqli_stmt_bind_param($stmt, "sissiiis", );
-
-//     if (mysqli_stmt_execute($stmt)) {
-//         echo "Success";
-//     } else {
-//         echo "Error: " . mysqli_error($conn);
-//     }
-
-//     mysqli_stmt_close($stmt);
-// } else {
-//     echo "Error in query preparation";
-// }
-$query="INSERT INTO Players (name, rating, position_player, photo, id_nationality, id_club, id_detail_player) VALUES ('$playerName', $rating,'$playerPosition', '$photoPlayer','$nationalitiesPlayer', '$clubName', $idCounter)";
+$query="INSERT INTO Players (name, rating, position_player, photo, id_nationality, id_club, id_detail_player) VALUES ('$playerName', $rating,'$playerPosition', '$logoPlayer','$nationalitiesPlayer', '$clubName', $idCounter)";
 
 if ($stmt = mysqli_query($conn, $query)) {
 
@@ -51,7 +33,7 @@ if ($stmt = mysqli_query($conn, $query)) {
       } else {
              echo "Error: " . mysqli_error($conn);
         }
-// require_once('../CrudJoueurs/Joueurs.php');
+require_once('../Joueurs/Joueurs.php');
 
 // header('Location: ../Joueurs/Jouoeurs.php');
 ?>

@@ -1,3 +1,26 @@
+<?php 
+
+// include('../connexion.php');
+
+//  $id = $_GET["id"];
+// $stmt = $conn->prepare("UPDATE Clubs SET name = ?, logo = ? WHERE id = ?");
+// $stmt->bind_param("ssi", $name, $logo, $id);
+
+// if ($stmt->execute()) {
+//     echo "succ";
+// } else {
+//     echo "error";
+// }
+
+// $stmt->close();
+
+//  require_once('./Equipe.php');
+
+// 
+
+
+
+?>
 <!DOCTYPE html>
 <?php
 include('../connexion.php');
@@ -8,8 +31,10 @@ include('../connexion.php');
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="../../public/css/style.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="../src/output.css" rel="stylesheet">
+
 
 </head>
 
@@ -32,10 +57,10 @@ include('../connexion.php');
             </ul>
 
             <div class="mt-6">
-                <h6 class="text-blue-600 text-sm font-bold px-4">CRUD</h6>
+                <h6 class="text-blue-600 text-sm font-bold px-4">FUT Champions</h6>
                 <ul class="mt-3">
                     <li>
-                        <a href="#"
+                        <a href="../views//Joueurs/Joueurs.php"
                             class="text-black hover:text-blue-600 text-sm flex items-center hover:bg-blue-50 rounded px-4 py-3 transition-all">
                             <svg fill="#000000" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                                 width="30px" height="50px" viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve">
@@ -59,7 +84,7 @@ include('../connexion.php');
                         </a>
                     </li>
                     <li>
-                        <a href="#"
+                        <a href="../views/Nationalite/Nationalite.php"
                             class="text-black hover:text-blue-600 text-sm flex items-center hover:bg-blue-50 rounded px-4 py-3 transition-all">
                             <svg fill="#000000" width="30px" height="50px" viewBox="0 0 36 36" version="1.1" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                                 <title>flag-solid</title>
@@ -71,7 +96,7 @@ include('../connexion.php');
                         </a>
                     </li>
                     <li>
-                        <a href="#"
+                        <a href="../views/Equipe/Equipe.php"
                             class="text-black hover:text-blue-600 text-sm flex items-center hover:bg-blue-50 rounded px-4 py-3 transition-all">
                             <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                                 width="30px" height="50px" viewBox="0 0 961.945 961.945" style="enable-background:new 0 0 961.945 961.945;"
@@ -123,7 +148,7 @@ include('../connexion.php');
                 <h6 class="text-blue-600 text-sm font-bold px-4">Actions</h6>
                 <ul class="mt-3">
                     <li>
-                        <a href="#"
+                        <a href="../CrudJoueurs/Ajouter.php"
                             class="text-black hover:text-blue-600 text-sm flex items-center hover:bg-blue-50 rounded px-4 py-3 transition-all">
                             <svg width="30px" height="50px" viewBox="0 0 24 24"
                                 xmlns="http://www.w3.org/2000/svg" fill="none">
@@ -138,14 +163,144 @@ include('../connexion.php');
                 </ul>
             </div>
         </section>
+<?php 
+ include('../connexion.php');
+
+$idPlayers = $_GET["id"];
+$idStatistic =$_GET["stisticId"];
+$idClubs=$_GET["idClubs"];
+$idNationalite=$_GET["Natid"];
+
+
+$Getinfo="SELECT  Players.position_player,Players.name AS PlayerNnme,Players.id As id,Clubs.name AS Clubname,Nationalities.id As Natid,Nationalities.name AS Nationaltie,Clubs.id AS idClubs,Details_players.id As stisticId,Players.name AS playerName,Nationalities.flag AS Flag,Players.photo AS PlayerPic,Rating,Clubs.logo AS logo, pace
+shooting,
+passing,
+pace,
+dribbling,
+defending,
+physical FROM Players INNER JOIN Nationalities ON Nationalities.id=Players.id INNER JOIN Clubs ON Clubs.id=Players.id INNER JOIN Details_players ON Details_players.id =Players.id  WHERE id = $idPlayers AND Natid= $idNationalite AND idClubs= $idClubs AND stisticId=$idStatistic ;";
+
+$resultat= mysqli_query($conn,$Getinfo);
+
+
+?>
 
         <section class="ml-[250px] w-full py-6 px-4">
             <div id="content-area">
-                <h1>Welcome!</h1>
-                <p>Please select an item from the dashboard to see more details.</p>
-            </div>
-        </section>
-    </main>
-</body>
+            <div id="modalEdit"
+        class="items-center justify-center  relative ">
+        <div class="bg-white rounded-lg p-6 w-96 modal-content ">
+          <h2 class="text-lg font-semibold text-gray-800 mb-4">Ajouter jouoeur </h2>
+          <form method="post" action="../CrudJoueurs/Ajouter.php">
+            <div class="mb-4 flex flex-wrap gap-4">
+            <?php     while ($row = mysqli_fetch_assoc($resultat)) { ?>
+              <!-- Name Input -->
+              <div class="w-full">
+                <label class="block text-sm font-medium text-gray-700">Name</label>
+                <input id="nameN" type="text" name="PlayerName" value=<?php echo$row["PlayerNnme"] ?>
+                  class="mt-1 block w-full border border-black border-2 rounded-lg shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                  required>
+              </div>
 
+             
+              <div class="w-full">
+        <label for="position" class="block text-sm font-medium text-gray-700">Position</label>
+
+          <input type="text" value=<?php echo($row["position_player"]) ;?> name="position" class="mt-1 block w-48 border border-black border-2 rounded-lg shadow-sm" >
+             <?php } ?>
+          </select>
+      </div>
+
+              <!-- Rating Input -->
+              <div class="w-full">
+                <label class="block text-sm font-medium text-gray-700">Rating</label>
+                <input id="rating" type="range" name="Rating" value=<?php echo$row["Rating"] ?>
+                  class="mt-1 block w-full border border-black border-2 rounded-lg shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                  required>
+              </div>
+
+       <div class="w-1/2">
+        <label for="nationality" class="block text-sm font-medium text-gray-700">Nationality</label>
+       <input type="text" name="Nationality" value=<?php echo$row["Nationaltie"] ?> class="mt-1 block w-48 border border-black border-2 rounded-lg shadow-sm"  id="">
+       </div>
+              <!-- Club Input -->
+              <div class="w-1/2">
+        <label for="Clubs" class="block text-sm font-medium text-gray-700">Clubs</label>
+       <input type="text" name="Clubs" value=<?php echo$row["Clubname"] ?> class="mt-1 block w-48 border border-black border-2 rounded-lg shadow-sm"  id="">
+       </div>
+       </div>
+
+              <!-- Flag Input -->
+              <div class="w-1/2 flex flex-row">
+                <label class="block text-sm font-medium text-gray-700">Logo Player</label>
+                <input id="Flag" type="text" value=<?php echo$row["PlayerPic"] ?> name="LogoPlayer" class="mt-1 block w-48 border border-black border-2 rounded-lg shadow-sm" required>
+              </div>
+
+              <!-- Pace Input -->
+              <div class="w-full">
+                <label class="block text-sm font-medium text-gray-700">Pace</label>
+                <input id="pace" name="Pace" type="range" min="1" max="100"
+                  class="mt-1 block w-1/2 border border-black border-2 rounded-lg shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                  required>
+              </div>
+
+              <!-- Shooting Input -->
+              <div class="w-full">
+                <label class="block text-sm font-medium text-gray-700">Shooting</label>
+                <input id="shooting" value=<?php echo$row["Shooting"] ?> name="Shooting" type="range" min="1" max="100"
+                  class="mt-1 block w-1/2 border border-black border-2 rounded-lg shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                  required>
+              </div>
+
+              <!-- Passing Input -->
+              <div class="w-full">
+                <label class="block text-sm font-medium text-gray-700">Passing</label>
+                <input id="passing" value=<?php echo$row["Passing"] ?> name="Passing" type="range" min="1" max="100"
+                  class="mt-1 block w-1/2 border border-black border-2 rounded-lg shadow-sm focus:border-indigo-500 focus:ring-indigo-"
+                  required>
+              </div>
+
+              <!-- Dribbling Input -->
+              <div class="w-full">
+                <label class="block text-sm font-medium text-gray-700">Dribbling</label>
+                <input id="dribbling" value=<?php echo$row["Dribbling"] ?> name="Dribbling" type="range" min="1" max="100"
+                  class="mt-1 block w-1/2 border border-black border-2 rounded-lg shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                  required>
+              </div>
+
+              <!-- Defending Input -->
+              <div class="w-full">
+                <label class="block text-sm font-medium text-gray-700">Defending</label>
+                <input id="defending" value=<?php echo$row["Defending"] ?> name="Defending" type="range" min="1" max="100"
+                  class="mt-1 block w-1/2 border border-black border-2 rounded-lg shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                  required>
+              </div>
+
+              <!-- Physical Input -->
+              <div class="w-full">
+                <label class="block text-sm font-medium text-gray-700">Physical</label>
+                <input id="physical" value=<?php echo$row["Physical"] ?> name="Physical" type="range" min="1" max="100"
+                  class="mt-1 block w-1/2 border border-black border-2 rounded-lg shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                  required>
+              </div>
+
+              <!-- Submit Button -->
+              <input type="submit"  name="submitFormAjout" class="w-24 bg-indigo-600 text-white py-2 mt-3 hover:bg-indigo-700 focus:outline-none focus:ring" value="Submit">
+
+              <!-- Close Button -->
+              <button type="button" class="mt-4 w-24 text-center text-sm text-gray-500 hover:text-gray-800" onclick="closeModalEdit()">Close</button>
+
+            </div>
+          </form>
+
+
+
+        </div>
+      </div>
+      <!-- <button class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg shadow">List</button> -->
+      
+
+    </section>
+
+</body>
 </html>

@@ -7,7 +7,7 @@ $name = $_GET['name'];
 $flag = $_GET['flag'];
 
 // Use prepared statements to avoid SQL injection
-$stmt = $conn->prepare("UPDATE Nationalities SET name = ?, flag = ? WHERE id = ?");
+$stmt = $conn->prepare("UPDATE   SET name = ?, flag = ? WHERE id = ?");
 $stmt->bind_param("ssi", $name, $flag, $id);
 
 if ($stmt->execute()) {
