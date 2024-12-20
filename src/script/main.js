@@ -94,3 +94,37 @@ function changeFormation() {
   }
 }
 
+
+function showModal() {
+  document.getElementById("modal").style.display = "block";
+}
+
+
+function closeModal() {
+  document.getElementById("modal").style.display = "none";
+}
+
+window.onclick = function(event) {
+  var modal = document.getElementById("modal");
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+
+function showModalEdit() {
+  // console.log(ui);
+  
+  document.getElementById("modalEdit").style.display = "block";
+}
+
+
+function closeModalEdit() {
+  document.getElementById("modalEdit").style.display = "none";
+}
+
+window.onclick = function(event) {
+  var modal = document.getElementById("modalEdit");
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}

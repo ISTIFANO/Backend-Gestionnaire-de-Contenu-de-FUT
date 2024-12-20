@@ -8,8 +8,10 @@ include('../connexion.php');
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="../../public/css/style.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="../src/output.css" rel="stylesheet">
+
 
 </head>
 
@@ -185,11 +187,33 @@ while ($row = mysqli_fetch_assoc($resultat)) {
         data-original="#000000" />
     </svg>
   </button>
-    <button class="mr-4" title="Edit">
-<svg fill="#000000" width="20px" height="40px" viewBox="0 0 512 512" id="_14_Add" data-name="14 Add" xmlns="http://www.w3.org/2000/svg">
-  <path id="Path_19" data-name="Path 19" d="M256,512C114.625,512,0,397.391,0,256S114.625,0,256,0C397.391,0,512,114.609,512,256S397.391,512,256,512Zm0-448C149.969,64,64,149.969,64,256s85.969,192,192,192c106.047,0,192-85.969,192-192S362.047,64,256,64Zm32,320H224V288H128V224h96V128h64v96h96v64H288Z" fill-rule="evenodd"/>
-</svg>
-  </button>
+<button class="mr-4" title="Edit" onclick="showModal()">
+  <svg fill="#000000" width="20px" height="40px" viewBox="0 0 512 512" id="_14_Add" data-name="14 Add" xmlns="http://www.w3.org/2000/svg">
+    <path id="Path_19" data-name="Path 19" d="M256,512C114.625,512,0,397.391,0,256S114.625,0,256,0C397.391,0,512,114.609,512,256S397.391,512,256,512Zm0-448C149.969,64,64,149.969,64,256s85.969,192,192,192c106.047,0,192-85.969,192-192S362.047,64,256,64Zm32,320H224V288H128V224h96V128h64v96h96v64H288Z" fill-rule="evenodd"/>
+  </svg>
+</button>
+
+
+<div id="modal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <form method="post" action="">
+      <div class="mb-4">
+        <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
+        <input type="text" id="name" name="name" class="mt-1 block w-full border border-black border-2 rounded-lg shadow-sm" required>
+      </div>
+
+      <div class="mb-4">
+        <label for="flag" class="block text-sm font-medium text-gray-700">Flag</label>
+        <input type="text" id="flag" name="flag" class="mt-1 block w-full border border-black border-2 rounded-lg shadow-sm" required>
+      </div>
+
+    
+      <input type="submit" name="submit" value="Submit" class="w-24 bg-indigo-600 text-white py-2 mt-3 hover:bg-indigo-700 focus:outline-none focus:ring">
+    </form>
+  </div>
+</div>
+
   <button class="mr-4" title="Delete">
     <svg xmlns="http://www.w3.org/2000/svg" class="w-5 fill-red-500 hover:fill-red-700" viewBox="0 0 24 24">
       <path
@@ -208,11 +232,28 @@ echo "
 
 
 
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+    $name = $_POST['name'];
+    $flag = $_POST['flag'];
+    $stmt = $conn->prepare("INSERT INTO Clubs (name, logo) VALUES (?, ?)");
+    $stmt->bind_param("ss", $name, $flag); 
+    if ($stmt->execute()) {
+        echo "succ";
+    } else {
+        echo "error";
+    }
+    $stmt->close();
+}
 
 ?>
+
+
+
             </div>
         </section>
     </main>
+    <script src="../../src/script/main.js"></script>
 </body>
 
 </html>

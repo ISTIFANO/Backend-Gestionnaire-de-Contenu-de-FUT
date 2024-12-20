@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <?php
-include('./connexion.php');
+include('../connexion.php');
 ?>
 <html lang="en">
 
@@ -8,15 +8,17 @@ include('./connexion.php');
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="../../public/css/style.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="../src/output.css" rel="stylesheet">
+
 
 </head>
 
 <body class="bg-gradient-to-r from-[#2DBAFF] via-[#2DBAFF] to-[#83b3963d]">
     <main class="w-screen h-screen flex">
         <section class="bg-white shadow-lg h-screen fixed top-0 left-0 min-w-[250px] py-6 px-4 font-[sans-serif]">
-            <a href="#"><img src="../public/img/pl-main-logo.png" alt="logo" class='w-[100px] h-24' /></a>
+            <a href="#"><img src="../../public/img/pl-main-logo.png" alt="logo" class='w-[100px] h-24' /></a>
             <ul class="mt-6">
                 <li>
                     <a href="#"
@@ -32,10 +34,10 @@ include('./connexion.php');
             </ul>
 
             <div class="mt-6">
-                <h6 class="text-blue-600 text-sm font-bold px-4">CRUD</h6>
+                <h6 class="text-blue-600 text-sm font-bold px-4">FUT Champions</h6>
                 <ul class="mt-3">
                     <li>
-                        <a href="#"
+                        <a href="../views//Joueurs/Joueurs.php"
                             class="text-black hover:text-blue-600 text-sm flex items-center hover:bg-blue-50 rounded px-4 py-3 transition-all">
                             <svg fill="#000000" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                                 width="30px" height="50px" viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve">
@@ -59,7 +61,7 @@ include('./connexion.php');
                         </a>
                     </li>
                     <li>
-                        <a href="#"
+                        <a href="../views/Nationalite/Nationalite.php"
                             class="text-black hover:text-blue-600 text-sm flex items-center hover:bg-blue-50 rounded px-4 py-3 transition-all">
                             <svg fill="#000000" width="30px" height="50px" viewBox="0 0 36 36" version="1.1" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                                 <title>flag-solid</title>
@@ -71,7 +73,7 @@ include('./connexion.php');
                         </a>
                     </li>
                     <li>
-                        <a href="#"
+                        <a href="../views/Equipe/Equipe.php"
                             class="text-black hover:text-blue-600 text-sm flex items-center hover:bg-blue-50 rounded px-4 py-3 transition-all">
                             <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                                 width="30px" height="50px" viewBox="0 0 961.945 961.945" style="enable-background:new 0 0 961.945 961.945;"
@@ -123,7 +125,7 @@ include('./connexion.php');
                 <h6 class="text-blue-600 text-sm font-bold px-4">Actions</h6>
                 <ul class="mt-3">
                     <li>
-                        <a href="#"
+                        <a href="../CrudJoueurs/Ajouter.php"
                             class="text-black hover:text-blue-600 text-sm flex items-center hover:bg-blue-50 rounded px-4 py-3 transition-all">
                             <svg width="30px" height="50px" viewBox="0 0 24 24"
                                 xmlns="http://www.w3.org/2000/svg" fill="none">
@@ -139,165 +141,8 @@ include('./connexion.php');
             </div>
         </section>
 
-
         <section class="ml-[250px] w-full py-6 px-4">
             <div id="content-area">
-         
-          <div id="popupModal"
-            class="   items-center justify-center ">
-            <div class="bg-white rounded-lg p-6 w-96  ">
-              <h2 class="text-lg font-semibold text-gray-800 mb-4">Ajouter jouoeur </h2>
-              <form method="post" action="../views/CrudJoueurs/Ajouter.php">
-  <div class="mb-4 flex flex-wrap gap-4">
-
-    <!-- Name Input -->
-    <div class="w-full">
-      <label class="block text-sm font-medium text-gray-700">Name</label>
-      <input id="nameN" type="text" name="PlayerName"
-        class="mt-1 block w-full border border-black border-2 rounded-lg shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
-        required>
-    </div>
-
-    <!-- Position Input -->
-    <?php 
-      include('./connexion.php');
-      $query = "SELECT DISTINCT position_player, id FROM Players";
-      $resultat = mysqli_query($conn, $query);
-      echo '
-      <div class="w-full">
-        <label for="position" class="block text-sm font-medium text-gray-700">Position</label>
-        <select name="PlayerPosition" class="mt-1.5 w-full rounded-lg border-gray-300 text-gray-700 sm:text-sm" required>';
-      while ($row = mysqli_fetch_assoc($resultat)) {
-        echo '<option value="' . $row["id"] . '">' . $row["position_player"] . '</option>';
-      }
-      echo '</select>
-      </div>';
-    ?>
-
-    <!-- Rating Input -->
-    <div class="w-full">
-      <label class="block text-sm font-medium text-gray-700">Rating</label>
-      <input id="rating" type="range" name="Rating" min="1" max="100"
-        class="mt-1 block w-full border border-black border-2 rounded-lg shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
-        required>
-    </div>
-
-    <!-- Photo Input -->
-    <div class="w-1/2 flex flex-row">
-      <label class="block text-sm font-medium text-gray-700">Photo</label>
-      <input id="Photo" type="text" name="PhotoPlayer" class="mt-1 block w-48 border border-black border-2 rounded-lg shadow-sm" required>
-    </div>
-
-    <!-- Nationality Input -->
-    <?php 
-      $query_nationnalitee = "SELECT DISTINCT name, id FROM Nationalities";
-      $nationnalitee = mysqli_query($conn, $query_nationnalitee);
-      echo '
-      <div class="w-1/2">
-        <label for="nationality" class="block text-sm font-medium text-gray-700">Nationality</label>
-        <select name="NationalitiesPlayer" class="mt-1.5 w-full rounded-lg border-gray-300 text-gray-700 sm:text-sm" required>';
-      while ($row = mysqli_fetch_assoc($nationnalitee)) {
-        echo '<option value="' . $row["id"] . '">' . $row["name"] . '</option>';
-      }
-      echo '</select>
-      </div>';
-    ?>
-
-    <!-- Logo Input -->
-    <div class="w-1/2 flex flex-row">
-      <label class="block text-sm font-medium text-gray-700">Logo</label>
-      <input id="logo" type="text" name="LogoPlayer" class="mt-1 block w-48 border border-black border-2 rounded-lg shadow-sm" required>
-    </div>
-
-    <!-- Club Input -->
-    <?php 
-      $query_clubs = "SELECT DISTINCT name, id FROM Clubs";
-      $clubs = mysqli_query($conn, $query_clubs);
-      echo '
-      <div class="w-1/2">
-        <label for="club" class="block text-sm font-medium text-gray-700">Club</label>
-        <select name="ClubName" class="mt-1.5 w-full rounded-lg border-gray-300 text-gray-700 sm:text-sm" required>';
-      while ($row = mysqli_fetch_assoc($clubs)) {
-        echo '<option value="' . $row["id"] . '">' . $row["name"] . '</option>';
-      }
-      echo '</select>
-      </div>';
-    ?>
-
-    <!-- Flag Input -->
-    <div class="w-1/2 flex flex-row">
-      <label class="block text-sm font-medium text-gray-700">Flag</label>
-      <input id="Flag" type="text" name="Flag" class="mt-1 block w-48 border border-black border-2 rounded-lg shadow-sm" required>
-    </div>
-
-    <!-- Pace Input -->
-    <div class="w-full">
-      <label class="block text-sm font-medium text-gray-700">Pace</label>
-      <input id="pace" name="Pace" type="range" min="1" max="100"
-        class="mt-1 block w-1/2 border border-black border-2 rounded-lg shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
-        required>
-    </div>
-
-    <!-- Shooting Input -->
-    <div class="w-full">
-      <label class="block text-sm font-medium text-gray-700">Shooting</label>
-      <input id="shooting" name="Shooting" type="range" min="1" max="100"
-        class="mt-1 block w-1/2 border border-black border-2 rounded-lg shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
-        required>
-    </div>
-
-    <!-- Passing Input -->
-    <div class="w-full">
-      <label class="block text-sm font-medium text-gray-700">Passing</label>
-      <input id="passing" name="Passing" type="range" min="1" max="100"
-        class="mt-1 block w-1/2 border border-black border-2 rounded-lg shadow-sm focus:border-indigo-500 focus:ring-indigo-"
-        required>
-    </div>
-
-    <!-- Dribbling Input -->
-    <div class="w-full">
-      <label class="block text-sm font-medium text-gray-700">Dribbling</label>
-      <input id="dribbling" name="Dribbling" type="range" min="1" max="100"
-        class="mt-1 block w-1/2 border border-black border-2 rounded-lg shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
-        required>
-    </div>
-
-    <!-- Defending Input -->
-    <div class="w-full">
-      <label class="block text-sm font-medium text-gray-700">Defending</label>
-      <input id="defending" name="Defending" type="range" min="1" max="100"
-        class="mt-1 block w-1/2 border border-black border-2 rounded-lg shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
-        required>
-    </div>
-
-    <!-- Physical Input -->
-    <div class="w-full">
-      <label class="block text-sm font-medium text-gray-700">Physical</label>
-      <input id="physical" name="Physical" type="range" min="1" max="100"
-        class="mt-1 block w-1/2 border border-black border-2 rounded-lg shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
-        required>
-    </div>
-
-    <!-- Submit Button -->
-    <input type="submit" name="submitFormAjout" class="w-24 bg-indigo-600 text-white py-2 mt-3 hover:bg-indigo-700 focus:outline-none focus:ring" value="Submit">
-
-    <!-- Close Button -->
-    <button type="button" class="mt-4 w-24 text-center text-sm text-gray-500 hover:text-gray-800" onclick="PopUp()">Close</button>
-    
-  </div>
-</form>
-
-
-            
-            </div>
-          </div>
-          <!-- <button class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg shadow">List</button> -->
-        </div>
-
-            </div>
-        </section>
-    </main>
     
 </body>
-
 </html>

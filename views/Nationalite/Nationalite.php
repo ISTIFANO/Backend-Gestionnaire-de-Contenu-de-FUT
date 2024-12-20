@@ -10,6 +10,7 @@ include('../connexion.php');
     <title>Document</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="../../src/output.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../public/css/style.css">
 
 </head>
 
@@ -143,84 +144,127 @@ include('../connexion.php');
             <div id="content-area">
 
 
-            <?php
+                <?php
 
-include('../connexion.php');
+                include('../connexion.php');
 
-$query = "SELECT *FROM Nationalities;";
+                $query = "SELECT *FROM Nationalities;";
 
-$resultat = mysqli_query($conn, $query);
+                $resultat = mysqli_query($conn, $query);
 
-echo '<div class="font-[sans-serif] overflow-x-auto">
-<table class="min-w-full bg-white">
-<thead class="bg-gray-800 whitespace-nowrap">
-<tr>
-<th class="p-4 text-left text-sm font-medium text-white">
-  Photo
-</th>
-<th class="p-4 text-left text-sm font-medium text-white">
-  name
-</th>
-<th class="p-4 text-left text-sm font-medium text-white">
-  
-</th>
-</tr>
-</thead> <tr class="bg-blue-50">';
-while ($row = mysqli_fetch_assoc($resultat)) {
-    //    echo "<h1>". $row["name"]."</h1>";
-    echo '
+                ?>
+                <div class="font-[sans-serif] overflow-x-auto">
+                    <table class="min-w-full bg-white">
+                        <thead class="bg-gray-800 whitespace-nowrap">
+                            <tr>
+                                <th class="p-4 text-left text-sm font-medium text-white">
+                                    Photo
+                                </th>
+                                <th class="p-4 text-left text-sm font-medium text-white">
+                                    name
+                                </th>
+                                <th class="p-4 text-left text-sm font-medium text-white">
+                                    <a class="mr-4" title="Edit" onclick="showModal()" href="#">
+                                        <svg fill="#000000" width="20px" height="40px" viewBox="0 0 512 512" id="_14_Add" data-name="14 Add" xmlns="http://www.w3.org/2000/svg">
+                                            <path id="Path_19" data-name="Path 19" d="M256,512C114.625,512,0,397.391,0,256S114.625,0,256,0C397.391,0,512,114.609,512,256S397.391,512,256,512Zm0-448C149.969,64,64,149.969,64,256s85.969,192,192,192c106.047,0,192-85.969,192-192S362.047,64,256,64Zm32,320H224V288H128V224h96V128h64v96h96v64H288Z" fill-rule="evenodd" />
+                                        </svg>
+                                    </a>
 
-<td class="p-4 text-sm text-black"><img src=' . $row["flag"] . ' class="h-8" alt="player" /></td>  ' . '
-<td>
-   '. $row["name"] .
-        '</td>
 
-<td class="p-4 flex justify-center">
-  <button class="mr-4" title="Edit">
-    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 fill-blue-500 hover:fill-blue-700"
-      viewBox="0 0 348.882 348.882">
-      <path
-        d="m333.988 11.758-.42-.383A43.363 43.363 0 0 0 304.258 0a43.579 43.579 0 0 0-32.104 14.153L116.803 184.231a14.993 14.993 0 0 0-3.154 5.37l-18.267 54.762c-2.112 6.331-1.052 13.333 2.835 18.729 3.918 5.438 10.23 8.685 16.886 8.685h.001c2.879 0 5.693-.592 8.362-1.76l52.89-23.138a14.985 14.985 0 0 0 5.063-3.626L336.771 73.176c16.166-17.697 14.919-45.247-2.783-61.418zM130.381 234.247l10.719-32.134.904-.99 20.316 18.556-.904.99-31.035 13.578zm184.24-181.304L182.553 197.53l-20.316-18.556L294.305 34.386c2.583-2.828 6.118-4.386 9.954-4.386 3.365 0 6.588 1.252 9.082 3.53l.419.383c5.484 5.009 5.87 13.546.861 19.03z"
-        data-original="#000000" />
-      <path
-        d="M303.85 138.388c-8.284 0-15 6.716-15 15v127.347c0 21.034-17.113 38.147-38.147 38.147H68.904c-21.035 0-38.147-17.113-38.147-38.147V100.413c0-21.034 17.113-38.147 38.147-38.147h131.587c8.284 0 15-6.716 15-15s-6.716-15-15-15H68.904C31.327 32.266.757 62.837.757 100.413v180.321c0 37.576 30.571 68.147 68.147 68.147h181.798c37.576 0 68.147-30.571 68.147-68.147V153.388c.001-8.284-6.715-15-14.999-15z"
-        data-original="#000000" />
-    </svg>
-  </button>
-      <button class="mr-4" title="Edit">
-<svg fill="#000000" width="20px" height="40px" viewBox="0 0 512 512" id="_14_Add" data-name="14 Add" xmlns="http://www.w3.org/2000/svg">
-  <path id="Path_19" data-name="Path 19" d="M256,512C114.625,512,0,397.391,0,256S114.625,0,256,0C397.391,0,512,114.609,512,256S397.391,512,256,512Zm0-448C149.969,64,64,149.969,64,256s85.969,192,192,192c106.047,0,192-85.969,192-192S362.047,64,256,64Zm32,320H224V288H128V224h96V128h64v96h96v64H288Z" fill-rule="evenodd"/>
-</svg>
-  </button>
-  <button class="mr-4" title="Delete">
-    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 fill-red-500 hover:fill-red-700" viewBox="0 0 24 24">
-      <path
-        d="M19 7a1 1 0 0 0-1 1v11.191A1.92 1.92 0 0 1 15.99 21H8.01A1.92 1.92 0 0 1 6 19.191V8a1 1 0 0 0-2 0v11.191A3.918 3.918 0 0 0 8.01 23h7.98A3.918 3.918 0 0 0 20 19.191V8a1 1 0 0 0-1-1Zm1-3h-4V2a1 1 0 0 0-1-1H9a1 1 0 0 0-1 1v2H4a1 1 0 0 0 0 2h16a1 1 0 0 0 0-2ZM10 4V3h4v1Z"
-        data-original="#000000" />
-      <path d="M11 17v-7a1 1 0 0 0-2 0v7a1 1 0 0 0 2 0Zm4 0v-7a1 1 0 0 0-2 0v7a1 1 0 0 0 2 0Z"
-        data-original="#000000" />
-    </svg>
-  </button>
-</td></tr>
-</tbody>
-';
-}
-echo "  
-</table>";
+                                    <div id="modal" class="modal">
+                                        <div class="modal-content">
+                                            <span class="close" onclick="closeModal()">&times;</span>
+                                            <form method="post" action="./Affichage.php">
+                                                <div class="mb-4">
+                                                    <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
+                                                    <input type="text" id="name" name="name" class="mt-1 block w-full border border-black border-2 rounded-lg shadow-sm" required>
+                                                </div>
+
+                                                <div class="mb-4">
+                                                    <label for="flag" class="block text-sm font-medium text-gray-700">Flag</label>
+                                                    <input type="text" id="flag" name="flag" class="mt-1 block w-full border border-black border-2 rounded-lg shadow-sm" required>
+                                                </div>
+
+
+                                                <input type="submit" name="submit" value="Submit" class="w-24 bg-indigo-600 text-white py-2 mt-3 hover:bg-indigo-700 focus:outline-none focus:ring">
+                                            </form>
+                                        </div>
+                                    </div>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tr class="bg-blue-50">
+
+                            <?php while ($row = mysqli_fetch_assoc($resultat)) { ?>
 
 
 
+                                <td class="p-4 text-sm text-black"><img src=<?php echo $row["flag"]; ?> class="h-8" alt="player" /></td>
+                                <td>
+                                    <?php echo $row["name"];  ?>
+                                </td>
 
-?>
+                                <td class="p-4 flex justify-center">
+                                    <button class="mr-4"  title="Edit">
+                                        <a href="Upadate.php?updateId=<?php echo ($row["id"])?>">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 fill-blue-500 hover:fill-blue-700"
+                                                viewBox="0 0 348.882 348.882">
+                                                <path
+                                                    d="m333.988 11.758-.42-.383A43.363 43.363 0 0 0 304.258 0a43.579 43.579 0 0 0-32.104 14.153L116.803 184.231a14.993 14.993 0 0 0-3.154 5.37l-18.267 54.762c-2.112 6.331-1.052 13.333 2.835 18.729 3.918 5.438 10.23 8.685 16.886 8.685h.001c2.879 0 5.693-.592 8.362-1.76l52.89-23.138a14.985 14.985 0 0 0 5.063-3.626L336.771 73.176c16.166-17.697 14.919-45.247-2.783-61.418zM130.381 234.247l10.719-32.134.904-.99 20.316 18.556-.904.99-31.035 13.578zm184.24-181.304L182.553 197.53l-20.316-18.556L294.305 34.386c2.583-2.828 6.118-4.386 9.954-4.386 3.365 0 6.588 1.252 9.082 3.53l.419.383c5.484 5.009 5.87 13.546.861 19.03z"
+                                                    data-original="#000000" />
+                                                <path
+                                                    d="M303.85 138.388c-8.284 0-15 6.716-15 15v127.347c0 21.034-17.113 38.147-38.147 38.147H68.904c-21.035 0-38.147-17.113-38.147-38.147V100.413c0-21.034 17.113-38.147 38.147-38.147h131.587c8.284 0 15-6.716 15-15s-6.716-15-15-15H68.904C31.327 32.266.757 62.837.757 100.413v180.321c0 37.576 30.571 68.147 68.147 68.147h181.798c37.576 0 68.147-30.571 68.147-68.147V153.388c.001-8.284-6.715-15-14.999-15z"
+                                                    data-original="#000000" />
+                                            </svg>
+                                        </a>
+                                      
+                                    </button>
+                                    <!-- <div id="modalEdit" class="modalEdit">
+                                        <div class="modal-content">
+                                            <span class="close" onclick="closeModalEdit()">&times;</span>
+                                            <form method="get" action="./Upadate.php">
+                                                <div class="mb-4">
+                                                    <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
+                                                    <input type="text" value= id="name" name="nameEdit" class="mt-1 block w-full border border-black border-2 rounded-lg shadow-sm" required>
+                                                </div>
 
-              
+                                                <div class="mb-4">
+                                                    <label for="flag" class="block text-sm font-medium text-gray-700">Flag</label>
+                                                    <input type="text" id="flag" value=ame="flagEdit" class="mt-1 block w-full border border-black border-2 rounded-lg shadow-sm" required>
+                                                </div>
 
+                                               
+                                            </form>
+                                        </div>
+                                    </div> -->
 
-
-
+                </div>
             </div>
+
+            <button class="mr-4" title="Delete">
+                <!-- <input type="hidden" name="idD" value=<?php $row ?> -->
+                <a href="Supprission.php?id=<?php echo ($row["id"]) ?>">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 fill-red-500 hover:fill-red-700" viewBox="0 0 24 24">
+                        <path
+                            d="M19 7a1 1 0 0 0-1 1v11.191A1.92 1.92 0 0 1 15.99 21H8.01A1.92 1.92 0 0 1 6 19.191V8a1 1 0 0 0-2 0v11.191A3.918 3.918 0 0 0 8.01 23h7.98A3.918 3.918 0 0 0 20 19.191V8a1 1 0 0 0-1-1Zm1-3h-4V2a1 1 0 0 0-1-1H9a1 1 0 0 0-1 1v2H4a1 1 0 0 0 0 2h16a1 1 0 0 0 0-2ZM10 4V3h4v1Z"
+                            data-original="#000000" />
+                        <path d="M11 17v-7a1 1 0 0 0-2 0v7a1 1 0 0 0 2 0Zm4 0v-7a1 1 0 0 0-2 0v7a1 1 0 0 0 2 0Z"
+                            data-original="#000000" />
+                    </svg>
+                </a>
+            </button>
+            </td>
+            </tr>
+            </tbody>
+            </form>
+
+        <?php } ?>
+
+        </table>
+        </div>
         </section>
     </main>
+    <script src="../../src/script/main.js"></script>
 </body>
 
 </html>
