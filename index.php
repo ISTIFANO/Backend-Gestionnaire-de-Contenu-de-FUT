@@ -42,7 +42,7 @@
           <nav aria-label="Global" class="hidden md:block">
             <ul class="flex items-center gap-6 text-sm">
               <li>
-                <a class="text-white transition font-semibold hover:text-white/75" href="./views/Dashboard.php"> About </a>
+                <a class="text-white transition font-semibold hover:text-white/75" href="./views/Dashboard.php">About </a>
               </li>
 
               <li>
@@ -64,6 +64,8 @@
               <li>
                 <a class="text-white transition font-semibold hover:text-white/75" href="./views/Dashboard.php"> Blog </a>
               </li>
+
+              <a href="./views/Joueurs/Joueurs.php" class="py-2  px-5 bg-violet-500 text-white font-semibold rounded-full shadow-md hover:bg-violet-700 focus:outline-none focus:ring focus:ring-violet-400 focus:ring-opacity-75">Login</a>
             </ul>
           </nav>
           <div class="block md:hidden">

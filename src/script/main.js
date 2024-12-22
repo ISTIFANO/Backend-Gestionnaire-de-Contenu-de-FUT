@@ -46,6 +46,7 @@ document.getElementById('formation').querySelectorAll('option').forEach(element 
   }
 });
 
+
 function changeFormation() {
   console.log("formation1A");
 
