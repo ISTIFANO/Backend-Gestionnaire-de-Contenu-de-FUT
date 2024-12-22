@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <section id="add_player" class=" gap-[40px] justify-center absolute top-0 h-full w-full mt-16 bg-[#2b2a2a] hidden" >
+        <form id="form" action="" class="flex flex-col items-center m-[53px]">
+            <h1 class="text-white m-[30px]"><Span id="label" >ADD</Span>Player</h1>
+            <div class="flex items-center gap-8">
+                <label for="select-Name" class="text-white">Player name:<br>
+            <select id="select-Name" class="w-[300px] flex " style="background-color: #1e1e1e;" placeholder="Player Name"></select>
+                </label>
+                <!-- <label for="select-Rating" class="text-white">Overall Rating:<br>
+                    <input type="text" name="rating" placeholder="Enter Rating" class="w-[300px] flex bg-[#1e1e1e] border-white h-[35.6px] font-sans rounded-[3px] border-solid border-[1px]">
+                </label> -->
+                <label for="football-positions" class="text-white">Player Position<br>
+                <select name="positions" id="football-positions" class="w-[300px] text-white flex bg-[#1e1e1e] border-white h-[35.6px] font-sans rounded-[3px] border-solid border-[1px]">
+                </label>
+                <option value="" selected>Pick Position</option>
+                    <!-- Goalkeeper -->
+      <option value="GK">Goalkeeper (GK)</option>
+    
+      <!-- Defenders -->
+      <option value="CB">Center-Back (CB)</option>
+      <option value="LB">Left Back (LB)</option>
+      <option value="RB">Right Back (RB)</option>
+      <option value="LWB">Left Wing-Back (LWB)</option>
+      <option value="RWB">Right Wing-Back (RWB)</option>
+      <option value="SW">Sweeper (SW)</option>
+    
+      <!-- Midfielders -->
+      <option value="CDM">Defensive Midfielder (CDM)</option>
+      <option value="CM">Central Midfielder (CM)</option>
+      <option value="CAM">Attacking Midfielder (CAM)</option>
+      <option value="LM">Left Midfielder (LM)</option>
+      <option value="RM">Right Midfielder (RM)</option>
+      <option value="BBM">Box-to-Box Midfielder</option>
+      <option value="DPM">Deep-Lying Playmaker</option>
+    
+      <!-- Forwards -->
+      <option value="ST">Striker (ST)</option>
+      <option value="CF">Center Forward (CF)</option>
+      <option value="LW">Left Winger (LW)</option>
+      <option value="RW">Right Winger (RW)</option>
+      <option value="SS">Second Striker (SS)</option>
+      <option value="FN">False Nine</option>
+                  </select>
+            </div>
+            <label for="palyer-img" class="text-white ">Player Image:
+                <input type="text" name="img" placeholder="Enter URL" class="w-[300px] flex bg-[#1e1e1e] border-white h-[35.6px] font-sans rounded-[3px] border-solid border-[1px]">
+            </label>
+            <div class="flex gap-8">
+            <label for="select-league"class="text-white">League:
+            <select id="select-league" class="w-[300px] flex "  style="background-color: #1e1e1e;" placeholder="Pick leauge">
+                <Option value=""></Option>
+            </select>
+        </label>
+            <label for="select-nation" class="text-white">Nation:
+            <select id="select-nation" class="w-[300px] flex " style="background-color: #1e1e1e;" placeholder="Pick Nation"></select>
+        </label> 
+    </div>
+    
+    <div class="flex gap-8">
+        <label for="select-version" class="text-white">Version:
+            <select id="select-version" class="w-[300px] flex " style="background-color: #1e1e1e;" placeholder="Pick Version"></select>
+        </label> 
+        <label for="select-club" class="text-white">Club:
+            <select id="select-club" class="w-[300px] flex " style="background-color: #1e1e1e;" placeholder="Pick Club"></select>
+        </label> 
+    </div>
+    <h1 class="text-white text-center" >Player Stats</h1>
+    <div class="flex gap-8">
+        <label for="PAC" class="text-white "><span class="stats">PAC:</span><br>
+            <input type="number"name="pac" min="30" max="99" step="1" class=" flex bg-[#1e1e1e] border-white h-[35.6px] font-sans rounded-[3px] border-solid border-[1px]" >
+        </label>
+        <label for="PAS" class="text-white "><span class="stats">PAS:</span><br>
+            <input type="number" name="pas" min="30" max="99" step="1" class=" flex bg-[#1e1e1e] border-white h-[35.6px] font-sans rounded-[3px] border-solid border-[1px]">
+        </label>
+        <label for="DEF" class="text-white "><span class="stats">DEF:</span><br>
+            <input type="number" name="def" min="30" max="99" step="1" class=" flex bg-[#1e1e1e] border-white h-[35.6px] font-sans rounded-[3px] border-solid border-[1px]">
+        </label>
+        <label for="SHO" class="text-white "><span class="stats">SHO:</span><br>
+            <input type="number" name="sho" min="30" max="99" step="1" class=" flex bg-[#1e1e1e] border-white h-[35.6px] font-sans rounded-[3px] border-solid border-[1px]">
+        </label>
+        <label for="DRI" class="text-white "><span class="stats">DRI:</span><br>
+            <input type="number" name="dri" min="30" max="99" step="1" class=" flex bg-[#1e1e1e] border-white h-[35.6px] font-sans rounded-[3px] border-solid border-[1px]">
+        </label>
+        <label for="PHY" class="text-white "><span class="stats">PHY:</span><br>
+            <input type="number" name="phy" min="30" max="99" step="1" class=" flex bg-[#1e1e1e] border-white h-[35.6px] font-sans rounded-[3px] border-solid border-[1px]">
+        </label>
+    </div>
+        <Button type="button" id="btn" class="mt-8 bg-[#55cca2] rounded-[20px] w-[50%] h-[50px] font-Poppins hover:bg-[#55cca288]">Save Player</Button>
+        </form>
+</body>
+</html>
